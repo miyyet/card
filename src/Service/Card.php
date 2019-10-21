@@ -1,13 +1,6 @@
 <?php
 namespace App\Service;
 
-use Symfony\Component\HttpClient\Exception\ClientException;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
@@ -15,19 +8,23 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  */
 class Card {
 
+  /**
+   * @var \Symfony\Contracts\HttpClient\HttpClientInterface
+   */
   protected $client;
 
+  /**
+   * Card constructor.
+   *
+   * @param \Symfony\Contracts\HttpClient\HttpClientInterface $client
+   */
   public function __construct(HttpClientInterface $client) {
     $this->client = $client;
   }
 
 
   /**
-   * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
-   * @throws \Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface
-   * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
-   * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
-   * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+   * Get cards from ws
    */
   public function getCards() {
 
@@ -82,6 +79,15 @@ class Card {
     return $sorted;
   }
 
+  /**
+   * check sort on webservice
+   *
+   * @param string $exerciceID
+   * @param array $cards
+   *
+   * @return int
+   * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+   */
   public function post(string $exerciceID, array $cards) {
     $response = $this->client->request(
       'POST',

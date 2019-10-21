@@ -7,15 +7,17 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpClient\HttpClient;
 
-
+/**
+ * Class SortCardCommand
+ *
+ * @package App\Command
+ */
 class SortCardCommand extends Command {
 
-  // the name of the command (the part after "bin/console")
   protected static $defaultName = 'card:sort';
 
   protected function configure() {
     $this
-      // the short description shown while running "php bin/console list"
       ->setDescription('Sort cards.');
 
   }
