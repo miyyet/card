@@ -3,7 +3,7 @@
     "require": {
         "symfony/console": "^4.3",
         "phpunit/phpunit": "^7.5",
-        "symfony/http-client": "^4.3"
+        "symfony/http-client": "^5.4"
     },
     "authors": [
         {
